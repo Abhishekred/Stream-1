@@ -1,0 +1,9 @@
+{
+    "name": "Stream-1",
+    "iconUrl": "https://raw.githubusercontent.com/Abhishekred/Stream-1/main/Icons/RepoIcon.png",
+    "description": "CloudStream extensions served through the Strem1 repository",
+    "manifestVersion": 1,
+    "pluginLists": [
+        "https://raw.githubusercontent.com/Abhishekred/Strem1/builds/plugins.json"
+    ]
+}
