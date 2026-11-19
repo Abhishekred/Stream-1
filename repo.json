@@ -1,9 +1,9 @@
 {
   "name": "Stream-1 (Test)",
   "iconUrl": "https://raw.githubusercontent.com/Abhishekred/Stream-1/main/Icons/RepoIcon.png",
-  "description": "Testing branch for Stream-1 CloudStream extensions (upstream-hosted files)",
+  "description": "Stream-1 CloudStream test repository with verified files on test-builds",
   "manifestVersion": 1,
   "pluginLists": [
-    "https://raw.githubusercontent.com/Abhishekred/Stream-1/test/plugins.json"
+    "https://raw.githubusercontent.com/Abhishekred/Stream-1/test-builds/plugins.json"
   ]
 }
