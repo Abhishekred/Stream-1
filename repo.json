@@ -1,0 +1,9 @@
+{
+  "name": "Stream-1 Test Builds",
+  "iconUrl": "https://raw.githubusercontent.com/Abhishekred/Stream-1/main/Icons/RepoIcon.png",
+  "description": "Test build mirror for Stream-1 CloudStream extensions",
+  "manifestVersion": 1,
+  "pluginLists": [
+    "https://raw.githubusercontent.com/Abhishekred/Stream-1/test-builds/plugins.json"
+  ]
+}
