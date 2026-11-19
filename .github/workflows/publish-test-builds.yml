@@ -1,0 +1,54 @@
+name: Publish test CloudStream builds
+
+on:
+  push:
+    branches:
+      - test
+    paths:
+      - 'plugins.json'
+      - 'repo.json'
+      - 'scripts/publish_test_builds.py'
+      - '.github/workflows/publish-test-builds.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: stream-1-test-builds
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    name: Verify and publish test builds
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out test branch
+        uses: actions/checkout@v4
+        with:
+          ref: test
+          persist-credentials: true
+      - name: Download and verify upstream builds
+        run: python3 scripts/publish_test_builds.py
+      - name: Publish to isolated test-builds branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          if git ls-remote --exit-code --heads origin test-builds > /dev/null; then
+            git fetch origin test-builds
+            git switch -C test-builds FETCH_HEAD
+          else
+            git switch --orphan test-builds
+          fi
+          git rm -rf --ignore-unmatch . > /dev/null
+          git clean -fdx > /dev/null
+          cp -a "$RUNNER_TEMP/stream-1-test-builds/." .
+          git add -A
+          if git diff --cached --quiet; then
+            echo 'No changes in test builds'
+          else
+            git commit -m 'test: sync verified CloudStream extension builds [skip ci]'
+            git push origin HEAD:refs/heads/test-builds
+          fi
