@@ -1,0 +1,6 @@
+[
+  { "url": "mm.json", "title": "Movies" },
+  { "url": "ss.json", "title": "Web Series" },
+  { "url": "lstanime.json", "title": "Anime" },
+  { "url": "desihub.json", "title": "Adult (18+)", "adult": true }
+]
